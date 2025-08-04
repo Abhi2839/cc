@@ -3,10 +3,11 @@ import streamlit as st
 
 recogniser = sr.Recognizer()
 
-# Language options
+# diff languages
 languages = {
     "English (India)": "en-IN",
     "Hindi": "hi-IN",
+     "Punjabi": "pa-IN",
     "Bengali": "bn-IN",
     "Tamil": "ta-IN",
     "Telugu": "te-IN",
@@ -14,22 +15,21 @@ languages = {
     "Gujarati": "gu-IN",
     "Kannada": "kn-IN",
     "Malayalam": "ml-IN",
-    "Punjabi": "pa-IN",
+   
     "Urdu": "ur-IN"
 }
 
 # Streamlit UI
-# st.set_page_config(page_title="Speech Recognition App")
-st.title("🗣️ Speech Recognition App")
+st.title("Speech Recognition App")
 
 # Language selection
-language_list = st.selectbox("🌐 Select Language", list(languages.keys()))
+language_list = st.selectbox("Select Language", list(languages.keys()))
 language_code = languages[language_list]
 st.write("You selected:", language_list)
 ans=True
 def speech_recog(lang_code):
     with sr.Microphone() as source:
-        st.info("🎤 Listening... Please speak now.")
+        st.write("🎤 Listening... Please speak now.")
         audio = recogniser.listen(source)
 
     try:
@@ -52,7 +52,7 @@ if st.button("🎙️ Speak Now"):
     elif ans==False:
         st.success("You did not speak anything.")
     else:
-        st.success("✅ Command received.")
+        st.write("✅ Command received.")
 
 # import speech_recognition as sr 
 # import streamlit as st
